@@ -15,7 +15,7 @@ const express = require('express')
 const app = express()
 var port = 80;
 
-app.get("/", function (req, res) {
+app.get("/getCrash", function (req, res) {
     res.sendFile(path.join(__dirname, 'out.csv'));
 })
 
