@@ -1,0 +1,91 @@
+<html>
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script>
+        var socket = io();
+        var draws = [];
+        var mults = [];
+
+
+        socket.on("addItem", function (data) {
+            data.data.forEach(function (draw) {
+                draws.unshift(draw);
+                mults.push(draw.answer);
+                $("[name=table]").prepend("<tr><td>"+draw.answer+"</td><td>"+draw.hash+"</td><td>"+draw.secret+"</td><td>"+draw.time+"</td></tr>")
+            })
+            var trace = {
+                x: mults,
+                type: 'histogram',
+                xbins:{
+                    end:20,
+                    size:0.5,
+                    start:1
+                }
+            };
+
+            var data = [trace];
+            Plotly.newPlot('tester', data);
+        })
+        socket.on("addOneItem", function (obj) {
+            var draw = obj.data;
+            console.log(draw);
+            draws.unshift(draw);
+            mults.push(draw.answer);
+            $("[name=table]").prepend("<tr><td>"+draw.answer+"</td><td>"+draw.hash+"</td><td>"+draw.secret+"</td><td>"+draw.time+"</td></tr>")
+
+            var trace = {
+                x: mults,
+                type: 'histogram',
+                xbins:{
+                    end:20,
+                    size:0.5,
+                    start:1
+                }
+            };
+
+            var data = [trace];
+            Plotly.newPlot('tester', data);
+        })
+
+
+    </script>
+    <script>
+        $(function () {
+            var ctx = $("#myChart");
+
+            var trace = {
+                x: mults,
+                type: 'histogram'
+            };
+
+            var data = [trace];
+            Plotly.newPlot('tester', data);
+        })
+        var ctx;
+
+
+    </script>
+</head>
+<body>
+<h2></h2>
+<div id="tester" style="width:600px;height:250px;"></div>
+
+<table>
+    <thead>
+        <th>Multiplier</th>
+        <th>Hash</th>
+        <th>Secret</th>
+        <th>Time</th>
+    </thead>
+    <tbody name="table">
+
+    </tbody>
+</table>
+
+
+
+</body>
+</html>
