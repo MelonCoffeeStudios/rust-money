@@ -10,6 +10,18 @@ var socket = io.connect('https://rustmoney.com:2096', {query:  "token=b14541fc64
     "ecaa6475dad6858391aa7a3655ba9245742a5e9c74a0e204d9735fdd3f6b8b5570293181b9",reconnect: true});
 
 
+const express = require('express')
+const app = express()
+var port = 80;
+
+
+
+
+
+app.listen(port, function(){
+    console.log('Server Listening on port ' + port)
+});
+
 socket.on("connect", function () {
     console.log("Connected");
     socket.emit('provably_fair_h');
