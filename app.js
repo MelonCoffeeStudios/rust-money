@@ -30,7 +30,7 @@ app.get("/", function (req, res) {
 io.on('connection', function(socket){
     console.log('a user connected');
     getCSV(function (data) {
-        socket.emit("totalDraws",data.length);
+        socket.emit("totalDraws",1000);
         data.forEach(function (draw, index, collection) {
             if(index < 1000) {
                 setTimeout(function () {
