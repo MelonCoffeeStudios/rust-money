@@ -30,7 +30,10 @@ app.get("/", function (req, res) {
 io.on('connection', function(socket){
     console.log('a user connected');
     getCSV(function (data) {
-        socket.emit("addItem", {data:data});
+        data.forEach(function (draw) {
+            socket.emit("addOneItem", {data:draw});
+        });
+
     })
 
 });
@@ -100,6 +103,7 @@ CrashSocket.on('crash end', function(data) {
     }
     writer.write(obj);
     io.emit("addOneItem", {data:obj});
+
     writer.end();
     console.log("End: ", data);
 });
