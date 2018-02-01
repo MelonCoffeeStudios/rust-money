@@ -17,17 +17,14 @@
         socket.on("addItem", function (data) {
             data.data.forEach(function (draw) {
                 draws.unshift(draw);
-                mults.push(draw.answer);
+                mults.x.push(draw.answer);
                 $("[name=table]").prepend("<tr><td>"+draw.answer+"</td><td>"+draw.hash+"</td><td>"+draw.secret+"</td><td>"+draw.time+"</td></tr>")
             })
             var trace = {
-                x: mults,
-                type: 'histogram',
-                xbins:{
-                    end:20,
-                    size:0.5,
-                    start:1
-                }
+                // x: mults.x,
+                y: mults.y,
+                // mode: 'markers',
+                type: 'box'
             };
 
             var data = [trace];
