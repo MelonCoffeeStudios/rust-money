@@ -30,10 +30,11 @@ app.get("/", function (req, res) {
 io.on('connection', function(socket){
     console.log('a user connected');
     getCSV(function (data) {
+        socket.emit("totalDraws",data.length);
         data.forEach(function (draw, index, collection) {
             setTimeout(function () {
                 socket.emit("addOneItem", {data:draw});
-            }, index * 1000)
+            }, index * 50)
 
         });
 
