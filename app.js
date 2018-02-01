@@ -34,7 +34,7 @@ io.on('connection', function(socket){
         data.forEach(function (draw, index, collection) {
             setTimeout(function () {
                 socket.emit("addOneItem", {data:draw});
-            }, index * 150)
+            }, index * 300)
 
         });
 
