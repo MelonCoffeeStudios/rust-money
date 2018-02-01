@@ -40,7 +40,7 @@
             var hex = draw.secret.toString(16);
             mults.push({x:draw.answer, y:hex});
             $("[name=table]").prepend("<tr><td>"+draw.answer+"</td><td>"+draw.hash+"</td><td>"+draw.secret+"</td><td>"+draw.time+"</td></tr>")
-            var percent = ((max - draws.length)/max).toFixed(2);
+            var percent = 100-((max - draws.length)/max).toFixed(2);
 
             $(".html").css("width", percent+"%");
             $(".html").html(percent+"%")
