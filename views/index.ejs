@@ -38,8 +38,8 @@
             // console.log(draw);
             draws.unshift(draw);
             var hex = parseInt(draw.secret, 16);
-            mults.x.push(draw.answer);
-            mults.y.push(draw.time);
+            mults.x.push(draw.time);
+            mults.y.push(draw.answer);
             $("[name=table]").prepend("<tr><td>"+draw.answer+"</td><td>"+draw.hash+"</td><td>"+draw.secret+"</td><td>"+draw.time+"</td></tr>")
             var percent = ((draws.length/max)*100).toFixed(2);
 
