@@ -35,7 +35,7 @@
         })
         socket.on("addOneItem", function (obj) {
             var draw = obj.data;
-            console.log(draw);
+            // console.log(draw);
             draws.unshift(draw);
             var hex = parseInt(draw.secret, 16);
             mults.push({x:draw.answer, y:hex});
