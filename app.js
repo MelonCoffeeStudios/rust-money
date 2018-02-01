@@ -31,13 +31,14 @@ io.on('connection', function(socket){
     console.log('a user connected');
     getCSV(function (data) {
         socket.emit("totalDraws",250);
-        data.forEach(function (draw, index, collection) {
-            if(index < 250) {
-                setTimeout(function () {
-                    socket.emit("addOneItem", {data: draw});
-                }, index * 200)
-            }
-        });
+        socket.emit("addItem", {data:data});
+        // data.forEach(function (draw, index, collection) {
+        //     if(index < 250) {
+        //         setTimeout(function () {
+        //             socket.emit("addOneItem", {data: draw});
+        //         }, index * 200)
+        //     }
+        // });
 
     })
 
