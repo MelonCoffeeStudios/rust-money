@@ -31,7 +31,7 @@ io.on('connection', function(socket){
     console.log('a user connected');
     getCSV(function (data) {
         socket.emit("totalDraws",250);
-        socket.emit("addItem", {data:data});
+        socket.emit("addItem", {data:data.slice(0,1000)});
         // data.forEach(function (draw, index, collection) {
         //     if(index < 250) {
         //         setTimeout(function () {
