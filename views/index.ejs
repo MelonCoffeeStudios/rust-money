@@ -37,7 +37,7 @@
             var draw = obj.data;
             console.log(draw);
             draws.unshift(draw);
-            var hex = draw.secret.toString(16);
+            var hex = parseInt(draw.secret, 16);
             mults.push({x:draw.answer, y:hex});
             $("[name=table]").prepend("<tr><td>"+draw.answer+"</td><td>"+draw.hash+"</td><td>"+draw.secret+"</td><td>"+draw.time+"</td></tr>")
             var percent = ((draws.length/max)*100).toFixed(2);
